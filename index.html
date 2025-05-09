@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Card Memory Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="designs.css">
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 sm:p-6">
+  <div class="bg-gray-900 bg-opacity-80 p-4 sm:p-6 pt-8 sm:pt-10 rounded-2xl border-4 border-yellow-400 glow w-full max-w-[95vw] sm:max-w-xl relative">
+    <!-- Mute/Unmute Button -->
+    <button id="mute-btn" class="mute-button bg-gray-600 text-white p-1.5 sm:p-2 rounded-full shadow-md button-glow pixel-font text-sm sm:text-base">🔊</button>
+    
+    <h1 class="text-lg sm:text-2xl text-yellow-300 text-center mb-1 sm:mb-1.5 pixel-font">🧙‍♂️ Memory Quest 🧙‍♂️</h1>
+    
+    <!-- Developer's Name -->
+    <p id="developer-name" class="developer-name text-base sm:text-lg font-medium text-white text-center bg-gray-900 bg-opacity-20 px-1.5 py-0.5 mt-1 mb-1 sm:mt-1.5 sm:mb-1.5 sm:px-2 sm:py-0.75 mx-auto max-w-[85%]" aria-label="Developer credit">Developed by Your Name</p>
+    
+    <!-- Level Selection -->
+    <div id="level-selection" class="mb-2 sm:mb-4">
+      <p class="text-center text-white text-sm sm:text-base mb-1 sm:mb-1.5 pixel-font">Choose Your Challenge:</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-1.5 sm:gap-2">
+        <button onclick="startGame('easy')" class="level-button bg-green-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg button-glow shadow-lg pixel-font text-sm sm:text-base">Easy</button>
+        <button onclick="startGame('medium')" class="level-button bg-yellow-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg button-glow shadow-lg pixel-font text-sm sm:text-base">Medium</button>
+        <button onclick="startGame('hard')" class="level-button bg-red-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg button-glow shadow-lg pixel-font text-sm sm:text-base">Hard</button>
+      </div>
+    </div>
+
+    <!-- Game Area -->
+    <div id="game-area" class="hidden">
+      <!-- Countdown Timer -->
+      <div id="countdown" class="hidden countdown bg-gray-900 bg-opacity-95 p-2 sm:p-3 rounded-lg border-4 border-yellow-400 glow text-white text-base sm:text-lg pixel-font">
+        <span id="countdown-text">5</span>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats flex flex-row sm:flex-row justify-between mb-2 sm:mb-4 text-white text-sm sm:text-base">
+        <div>
+          <span class="pixel-font">Lives: </span>
+          <span id="lives">❤️❤️❤️</span>
+        </div>
+        <div>
+          <span class="pixel-font">Score: </span>
+          <span id="score">0 💰</span>
+        </div>
+      </div>
+
+      <!-- Card Grid -->
+      <div id="card-grid" class="grid gap-1 sm:gap-2"></div>
+
+      <!-- Restart Button -->
+      <button id="restart-btn" class="mt-2 sm:mt-4 bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg button-glow shadow-lg w-full pixel-font text-sm sm:text-base">Restart Quest</button>
+    </div>
+
+    <!-- Modal Pop-Up for Win/Lose -->
+    <div id="modal" class="hidden modal-overlay">
+      <div class="modal-content bg-gray-900 bg-opacity-95 p-4 sm:p-6 rounded-2xl border-4 border-yellow-400 glow w-full max-w-[85vw] sm:max-w-lg text-center">
+        <h2 id="modal-title" class="text-base sm:text-xl pixel-font mb-1 sm:mb-2"></h2>
+        <p id="modal-score" class="text-white text-sm sm:text-base pixel-font mb-2 sm:mb-4"></p>
+        <button onclick="resetGame()" class="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg button-glow shadow-lg pixel-font text-sm sm:text-base">Play Again</button>
+      </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="bgm" loop autoplay>
+      <source src="assets/bg_m.mp3" type="audio/mp3">
+    </audio>
+    <audio id="win-sound">
+      <source src="assets/success.mp3" type="audio/mp3">
+    </audio>
+    <audio id="lose-sound">
+      <source src="assets/failed.mp3" type="audio/mp3">
+    </audio>
+  </div>
+  <script src="functions.js"></script>
+</body>
+</html>

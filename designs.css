@@ -1,0 +1,171 @@
+body {
+    background: linear-gradient(135deg, #3b1a7a, #8aa9e8);
+    font-family: 'Press Start 2P', cursive;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+}
+.card {
+    perspective: 1000px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+.card-front {
+    background: #ffffff;
+    transform: rotateY(180deg);
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+}
+.card-front img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+.card-back {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%233a1c71"/><path d="M50 20 L65 50 L50 80 L35 50 Z" fill="%23d76d77" stroke="%23fff" stroke-width="2"/><circle cx="50" cy="50" r="10" fill="%23ffafbd"/></svg>') center/cover;
+    border-radius: 6px;
+}
+.glow {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 16px rgba(255, 255, 255, 0.5);
+}
+.button-glow:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px rgba(255, 255, 255, 0.7);
+}
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+.modal-content {
+    transition: transform 0.3s ease;
+}
+.modal-content.show {
+    transform: scale(1.05);
+}
+.countdown {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 16px rgba(255, 255, 255, 0.5); }
+    50% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px rgba(255, 255, 255, 0.7); }
+    100% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 16px rgba(255, 255, 255, 0.5); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.developer-name {
+    font-family: 'Montserrat', sans-serif;
+    animation: fadeIn 0.6s ease-in-out;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s, background-color 0.2s;
+}
+.developer-name:hover {
+    transform: scale(1.05);
+    background-color: rgba(17, 24, 39, 0.5);
+}
+.mute-button {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+}
+@media (min-width: 640px) {
+    .countdown {
+        top: -15%;
+    }
+    .mute-button {
+        top: 4px;
+        right: 4px;
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+    }
+    @media (max-width: 640px) {
+    .card {
+        height: 10vw !important;
+        min-height: 80px;
+    }
+    .developer-name {
+        max-width: 85%;
+    }
+    .level-button {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+@media (max-width: 400px) {
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    .mute-button {
+        top: 2px;
+        right: 2px;
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+    .developer-name {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+    .card {
+        min-height: 64px;
+        height: 9vw !important;
+    }
+    .countdown {
+        top: -20%;
+    }
+}
+@media (max-width: 360px) {
+    .developer-name {
+        font-size: 0.875rem;
+        padding: 0.125rem 0.25rem;
+    }
+    .card {
+        min-height: 56px;
+        height: 8vw !important;
+    }
+}
